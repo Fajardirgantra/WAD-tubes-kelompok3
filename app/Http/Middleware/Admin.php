@@ -15,7 +15,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth()->usuer()->usertype=='admin')
+        if(Auth()->user()->usertype=='admin')
         {
             return $next($request);
         }
