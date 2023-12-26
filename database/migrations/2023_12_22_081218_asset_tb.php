@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::create('asset', function(Blueprint $table )  {
-
-        $table->id();
-        $table->string('kodeasset');
-        $table->string('nama');
-        $table->string('kategori');
-        $table->date('tanggal');
-
+        schema::create('assets', function(Blueprint $table )  {
+            $table->id();
+            $table->foreignId('ruangan_id')->constrained()->onDelete('cascade');
+            $table->string('kode_asset');
+            $table->string('nama_asset');
+            $table->string('kategori');
+            $table->date('tanggal_masuk');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        schema::dropIfExists('asset');
+        schema::dropIfExists('assets');
     }
 };
