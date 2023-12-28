@@ -15,7 +15,8 @@ class PemeliharaanController extends Controller
     }
     public function create()
     {
-        //
+        $pemeliharaans = Pemeliharaan::all();
+        return view('admin.pemeliharaan_create', compact('pemeliharaans'));
     }
     public function store(Request $request)
     {

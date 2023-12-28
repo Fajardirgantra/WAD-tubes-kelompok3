@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/pemeliharaan/index', [PemeliharaanController::class, 'index'])->name('pemeliharaan_index');
     Route::get('/pemeliharaan/create', [PemeliharaanController::class, 'create'])->name('pemeliharaan_create');
+    Route::post('/pemeliharaan/store', [PemeliharaanController::class, 'store'])->name('pemeliharaan_store');
+
 
 });
 
