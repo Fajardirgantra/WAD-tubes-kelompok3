@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PemeliharaanController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/pemeliharaan/index', [PemeliharaanController::class, 'index'])->name('pemeliharaan_index');
+    Route::get('/pemeliharaan/create', [PemeliharaanController::class, 'create'])->name('pemeliharaan_create');
 
 });
 
