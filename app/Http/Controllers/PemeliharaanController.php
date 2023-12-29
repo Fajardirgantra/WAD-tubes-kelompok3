@@ -39,10 +39,21 @@ class PemeliharaanController extends Controller
     }
     public function update(Request $request, $pemeliharaan_id)
     {
-        //
+        $pemeliharaan = Pemeliharaan::find($pemeliharaan_id);
+        $foto = fake() -> uuid() . '.' . $request -> file('foto') -> extension();
+        $request -> file('foto') -> move(public_path('/pemeliharaan/bukti'), $foto);
+        $pemeliharaan -> update([
+            'asset_id' => $request -> asset_id,
+            'jenis_perbaikan' => $request -> jenis_perbaikan,
+            'kegiatan' => $request -> kegiatan,
+            'foto' => "/pemeliharaan/bukti/$foto",
+            'tanggal_pemeliharaan' => $request -> tanggal_pemeliharaan
+        ]);
+        return redirect('/pemeliharaan/index');
     }
     public function destroy($pemeliharaan_id)
     {
-        //
+        $pemeliharaan = Pemeliharaan::find($pemeliharaan_id) -> delete();
+        return redirect('/pemeliharaan/index');
     }
 }
