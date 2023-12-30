@@ -16,8 +16,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @if (Auth::user()->usertype == 'admin')
+                        <x-nav-link :href="route('asset_index')" :active="request()->routeIs('asset_index')">
+                            {{ __('Asset') }}
                         <x-nav-link :href="route('pemeliharaan_index')" :active="request()->routeIs('pemeliharaan_index')">
                             {{ __('Pemeliharaan') }}
+
                         </x-nav-link>
                     @endif
                 </div>
