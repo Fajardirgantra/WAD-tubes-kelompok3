@@ -16,15 +16,6 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @if (Auth::user()->usertype == 'admin')
-                        {{-- <x-nav-link :href="route('user_index')" :active="request()->routeIs('user_index')">
-                            {{ __('Users') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('ruangan_index')" :active="request()->routeIs('ruangan_index')">
-                            {{ __('Ruangan') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('asset_index')" :active="request()->routeIs('asset_index')">
-                            {{ __('Asset') }}
-                        </x-nav-link> --}}
                         <x-nav-link :href="route('pemeliharaan_index')" :active="request()->routeIs('pemeliharaan_index')">
                             {{ __('Pemeliharaan') }}
                         </x-nav-link>
