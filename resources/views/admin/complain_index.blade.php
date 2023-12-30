@@ -17,6 +17,7 @@
                                 <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Kode Asset</th>
                                 <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Keterangan</th>
                                 <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Foto Bukti</th>
+                                <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Status</th>
                                 <th colspan="2" scope="colgroup" class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left"><center>Action</center></th>
                             </tr>
                         </thead>
@@ -28,6 +29,7 @@
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $complain->asset->kode_asset }}</td>
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $complain->keterangan }}</td>
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600"><img src="{{ $complain->foto }}" height="250px" width="250px"/></td>
+                                    <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $complain->status }}</td>
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">
                                         <a href="{{ route('complain_edit', $complain->id) }}">
                                             <center>

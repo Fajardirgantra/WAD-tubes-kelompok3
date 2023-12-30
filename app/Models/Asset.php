@@ -21,4 +21,9 @@ class Asset extends Model
     {
         return $this->hasMany(Pemeliharaan::class);
     }
+
+    public function complain(): HasMany
+    {
+        return $this->hasMany(Complain::class);
+    }
 }
