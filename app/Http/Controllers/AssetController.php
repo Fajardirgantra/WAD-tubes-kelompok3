@@ -13,7 +13,6 @@ class AssetController extends Controller
         $assets = Asset::all();
         return view('admin.asset_index', compact('assets'));
     }
-
     public function create()
     {
         $ruangans = Ruangan::all();
@@ -54,5 +53,4 @@ class AssetController extends Controller
         $asset -> delete();
         return redirect('/asset/index');
     }
-
 }
