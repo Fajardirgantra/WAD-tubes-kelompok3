@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Complain;
 use App\Models\Asset;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
 
 
 class ComplainController extends Controller
@@ -18,7 +20,7 @@ class ComplainController extends Controller
     public function create()
     {
         $assets = Asset::all();
-        return view('complain_create', compact('assets'));    
+        return view('complain_create', compact('assets'));
     }
     public function store(Request $request)
     {
@@ -30,31 +32,30 @@ class ComplainController extends Controller
             'keterangan' => $request->keterangan,
             'foto' => "/complain/bukti/$foto",
         ]);
+        Session::flash('success', 'Complaint added successfully!');
+
         return redirect('/complain/create');
     }
     public function edit($complain_id)
     {
         $complain = Complain::find($complain_id);
         $assets = Asset::all();
-        return view('admin.complain_edit', compact('complain', 'assets')); 
+        return view('admin.complain_edit', compact('complain', 'assets'));
     }
     public function update(Request $request, $complain_id)
     {
         $complain = Complain::find($complain_id);
-        if($request->foto)
-        {
-            $foto = fake() -> uuid() . '.' . $request->file('foto')->extension();
+        if ($request->foto) {
+            $foto = fake()->uuid() . '.' . $request->file('foto')->extension();
             $request->file('foto')->move(public_path('/complain/bukti'), $foto);
-            $complain -> update([
+            $complain->update([
                 'asset_id' => $request->asset_id,
                 'keterangan' => $request->keterangan,
                 'foto' => "/complain/bukti/$foto",
                 'status' => $request->status,
             ]);
-        }
-        else
-        {
-            $complain -> update([
+        } else {
+            $complain->update([
                 'asset_id' => $request->asset_id,
                 'keterangan' => $request->keterangan,
                 'status' => $request->status,
