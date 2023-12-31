@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('asset_id')->constrained()->onDelete('cascade');
             $table->string('keterangan');
             $table->string('foto');
+            $table->string('status')->default('belum terbaca');
             $table->timestamps();
         });
     }

@@ -3,62 +3,68 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Complain;
+use App\Models\Asset;
+use Illuminate\Support\Facades\Auth;
+
 
 class ComplainController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $complains = Complain::all();
+        return view('admin.complain_index', compact('complains'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $assets = Asset::all();
+        return view('complain_create', compact('assets'));    
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $foto = fake()->uuid() . '.' . $request->file('foto')->extension();
+        $request->file('foto')->move(public_path('/complain/bukti'), $foto);
+        Complain::create([
+            'user_id' => Auth::user()->id,
+            'asset_id' => $request->asset_id,
+            'keterangan' => $request->keterangan,
+            'foto' => "/complain/bukti/$foto",
+        ]);
+        return redirect('/complain/create');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($complain_id)
     {
-        //
+        $complain = Complain::find($complain_id);
+        $assets = Asset::all();
+        return view('admin.complain_edit', compact('complain', 'assets')); 
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $complain_id)
     {
-        //
+        $complain = Complain::find($complain_id);
+        if($request->foto)
+        {
+            $foto = fake() -> uuid() . '.' . $request->file('foto')->extension();
+            $request->file('foto')->move(public_path('/complain/bukti'), $foto);
+            $complain -> update([
+                'asset_id' => $request->asset_id,
+                'keterangan' => $request->keterangan,
+                'foto' => "/complain/bukti/$foto",
+                'status' => $request->status,
+            ]);
+        }
+        else
+        {
+            $complain -> update([
+                'asset_id' => $request->asset_id,
+                'keterangan' => $request->keterangan,
+                'status' => $request->status,
+            ]);
+        }
+        return redirect('/complain/index');
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($complain_id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $complain = Complain::find($complain_id)->delete();
+        return redirect('/complain/index');
     }
 }
