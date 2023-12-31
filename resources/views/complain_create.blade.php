@@ -19,6 +19,7 @@
                                     <option value="{{ $asset->id }}" class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm'">{{ $asset->kode_asset }}</option>
                                 @endforeach
                             </select>
+
                             <x-input-error :messages="$errors->get('kode_asset')" class="mt-2" />
                         </div>
 
