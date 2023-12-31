@@ -31,8 +31,14 @@
                         <div class="mt-4">
                             <x-input-label for="foto" :value="__('Foto Bukti')" />
                             <img src="{{ $complain->foto }}" height="250px" width="250px"/>
-                            <x-text-input id="foto" class="block mt-1 w-full" type="file" name="foto" :value="old('foto')" required/>
+                            <x-text-input id="foto" class="block mt-1 w-full" type="file" name="foto" :value="old('foto')"/>
                             <x-input-error :messages="$errors->get('foto')" class="mt-2" />
+                        </div>
+
+                        <div class="mt-4">
+                            <x-input-label for="status" :value="__('Status')" />
+                            <x-text-input id="status" class="block mt-1 w-full" type="text" name="status" :value="old('status', $complain->status)" required/>
+                            <x-input-error :messages="$errors->get('status')" class="mt-2" />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">

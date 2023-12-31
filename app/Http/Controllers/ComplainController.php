@@ -41,14 +41,25 @@ class ComplainController extends Controller
     public function update(Request $request, $complain_id)
     {
         $complain = Complain::find($complain_id);
-        $foto = fake() -> uuid() . '.' . $request->file('foto')->extension();
-        $request->file('foto')->move(public_path('/complain/bukti'), $foto);
-        $complain -> update([
-            'asset_id' => $request->asset_id,
-            'keterangan' => $request->keterangan,
-            'foto' => "/complain/bukti/$foto",
-            'status' => "sudah dibaca",
-        ]);
+        if($request->foto)
+        {
+            $foto = fake() -> uuid() . '.' . $request->file('foto')->extension();
+            $request->file('foto')->move(public_path('/complain/bukti'), $foto);
+            $complain -> update([
+                'asset_id' => $request->asset_id,
+                'keterangan' => $request->keterangan,
+                'foto' => "/complain/bukti/$foto",
+                'status' => $request->status,
+            ]);
+        }
+        else
+        {
+            $complain -> update([
+                'asset_id' => $request->asset_id,
+                'keterangan' => $request->keterangan,
+                'status' => $request->status,
+            ]);
+        }
         return redirect('/complain/index');
     }
     public function destroy($complain_id)
