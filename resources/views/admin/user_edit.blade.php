@@ -25,8 +25,11 @@
                         </div>
 
                         <div class="mt-4">
-                            <x-input-label for="usertype" :value="__('UserType')" />
-                            <x-text-input id="usertype" class="block mt-1 w-full" type="text" name="usertype" :value="old('usertype', $user->usertype)" required/>
+                            <x-input-label for="usertype" :value="__('User Type')" />
+                            <select id="usertype" name="usertype" class="block mt-1 w-full" required>
+                                <option value="admin" {{ $user->usertype === 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="user" {{ $user->usertype === 'user' ? 'selected' : '' }}>User</option>
+                            </select>
                             <x-input-error :messages="$errors->get('usertype')" class="mt-2" />
                         </div>
 
