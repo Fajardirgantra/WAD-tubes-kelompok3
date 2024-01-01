@@ -33,8 +33,6 @@
                         <div class="mt-4">
                             <x-input-label for="foto" :value="__('Foto Bukti')" />
                             <img src="{{ $complain->foto }}" height="250px" width="250px"/>
-                            <!-- Display a message indicating that the field is not editable -->
-                            <span class="text-gray-500">This field is not editable</span>
                         </div>
 
                         <div class="mt-4">
