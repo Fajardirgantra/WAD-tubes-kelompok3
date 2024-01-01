@@ -14,4 +14,12 @@ class Ruangan extends Model
     {
         return $this->hasMany(Asset::class);
     }
+    public function pemeliharaan(): HasMany
+    {
+        return $this->hasMany(Pemeliharaan::class);
+    }
+    public function complain(): HasMany
+    {
+        return $this->hasMany(Complain::class);
+    }
 }

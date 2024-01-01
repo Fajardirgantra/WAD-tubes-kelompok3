@@ -13,12 +13,16 @@
                         @csrf
 
                         <div>
+                            <x-input-label for="ruangan_id" :value="__('Kode Ruangan')" />
+                            <x-text-input id="ruangan_id" class="block mt-1 w-full" type="text" name="ruangan_id" :value="$pemeliharaan->ruangan->kode_ruangan" readonly />
+                            <input type="hidden" name="ruangan_id" value="{{ $pemeliharaan->ruangan->id }}" />
+                            <x-input-error :messages="$errors->get('ruangan_id')" class="mt-2" />
+                        </div>
+
+                        <div class="mt-4">
                             <x-input-label for="asset_id" :value="__('Kode Asset')" />
-                            <select id="asset_id" class="block mt-1 w-full" type="text" name="asset_id" :value="old('asset_id')" required>
-                                @foreach($assets as $asset)
-                                    <option value="{{ $asset->id }}" class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm'">{{ $asset->kode_asset }}</option>
-                                @endforeach
-                            </select>
+                            <x-text-input id="asset_id" class="block mt-1 w-full" type="text" name="asset_id" :value="$pemeliharaan->asset->kode_asset" readonly />
+                            <input type="hidden" name="asset_id" value="{{ $pemeliharaan->asset->id }}" />
                             <x-input-error :messages="$errors->get('asset_id')" class="mt-2" />
                         </div>
 

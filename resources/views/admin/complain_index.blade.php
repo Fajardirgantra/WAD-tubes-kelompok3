@@ -14,6 +14,7 @@
                             <tr>
                                 <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">ID Complain</th>
                                 <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Email User</th>
+                                <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Kode Ruangan</th>
                                 <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Kode Asset</th>
                                 <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Keterangan</th>
                                 <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Foto Bukti</th>
@@ -26,6 +27,7 @@
                                 <tr>
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $complain->id }}</td>
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $complain->user->email }}</td>
+                                    <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $complain->ruangan->kode_ruangan }}</td>
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $complain->asset->kode_asset }}</td>
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $complain->keterangan }}</td>
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600"><img src="{{ $complain->foto }}" height="250px" width="250px"/></td>

@@ -12,9 +12,9 @@ class Asset extends Model
     use HasFactory;
     protected $fillable = ['ruangan_id', 'kode_asset', 'nama_asset', 'kategori', 'tanggal_masuk',];
     
-    public function ruangan(): BelongsTo
+    public function ruangan()
     {
-        return $this->belongsTo(Ruangan::class);
+        return $this->belongsTo(Ruangan::class, 'ruangan_id');
     }
 
     public function pemeliharaan(): HasMany

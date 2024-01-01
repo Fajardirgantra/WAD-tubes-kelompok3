@@ -7,7 +7,7 @@ use App\Models\Complain;
 use App\Models\Asset;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-
+use App\Models\Ruangan;
 
 class ComplainController extends Controller
 {
@@ -18,8 +18,9 @@ class ComplainController extends Controller
     }
     public function create()
     {
+        $ruangans = Ruangan::all();
         $assets = Asset::all();
-        return view('complain_create', compact('assets'));
+        return view('complain_create', compact('assets', 'ruangans'));
     }
     public function store(Request $request)
     {
@@ -28,6 +29,7 @@ class ComplainController extends Controller
         Complain::create([
             'user_id' => Auth::user()->id,
             'asset_id' => $request->asset_id,
+            'ruangan_id' => $request->ruangan_id,
             'keterangan' => $request->keterangan,
             'foto' => "/complain/bukti/$foto",
         ]);
@@ -48,6 +50,7 @@ class ComplainController extends Controller
             $foto = fake()->uuid() . '.' . $request->file('foto')->extension();
             $request->file('foto')->move(public_path('/complain/bukti'), $foto);
             $complain->update([
+                'ruangan_id' => $request->ruangan_id,
                 'asset_id' => $request->asset_id,
                 'keterangan' => $request->keterangan,
                 'foto' => "/complain/bukti/$foto",
@@ -55,6 +58,7 @@ class ComplainController extends Controller
             ]);
         } else {
             $complain->update([
+                'ruangan_id' => $request->ruangan_id,
                 'asset_id' => $request->asset_id,
                 'keterangan' => $request->keterangan,
                 'status' => $request->status,
@@ -66,5 +70,10 @@ class ComplainController extends Controller
     {
         $complain = Complain::find($complain_id)->delete();
         return redirect('/complain/index');
+    }
+    public function fetchAssetByRuanganId(Request $request, string $ruanganId)
+    {
+        $assets = Asset::where(["ruangan_id" => $ruanganId])->get();
+        return $assets;
     }
 }

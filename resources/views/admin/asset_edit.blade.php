@@ -14,13 +14,11 @@
 
                         <div>
                             <x-input-label for="ruangan_id" :value="__('Kode Ruangan')" />
-                            <select id="ruangan_id" class="block mt-1 w-full" type="text" name="ruangan_id" :value="old('ruangan_id')" required autofocus>
-                                @foreach($ruangans as $ruangan)
-                                    <option value="{{ $ruangan->id }}" class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm'">{{ $ruangan->kode_ruangan }}</option>
-                                @endforeach
-                            </select>
+                            <x-text-input id="ruangan_id" class="block mt-1 w-full" type="text" name="ruangan_id" :value="$asset->ruangan->kode_ruangan" readonly />
+                            <input type="hidden" name="ruangan_id" value="{{ $asset->ruangan->id }}" />
                             <x-input-error :messages="$errors->get('ruangan_id')" class="mt-2" />
                         </div>
+                        
 
                         <div class="mt-4">
                             <x-input-label for="kode_asset" :value="__('Kode Asset')" />

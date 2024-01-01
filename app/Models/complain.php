@@ -21,4 +21,9 @@ class Complain extends Model
     {
         return $this->belongsTo(Asset::class);
     }
+    public function ruangan(): BelongsTo
+    {
+        return $this->belongsTo(Ruangan::class);
+    }
+
 }

@@ -18,6 +18,7 @@
                         <thead>
                             <tr>
                                 <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">ID Pemeliharaan</th>
+                                <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Kode Ruangan</th>
                                 <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Kode Asset</th>
                                 <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Jenis Perbaikan</th>
                                 <th class="border-b border-gray-300 font-medium p-4 pl-8 pt-0 pb-3 text-gray-700 text-left">Kegiatan</th>
@@ -30,6 +31,7 @@
                             @foreach ($pemeliharaans as $pemeliharaan)
                                 <tr>
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $pemeliharaan->id }}</td>
+                                    <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $pemeliharaan->ruangan->kode_ruangan }}</td>
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $pemeliharaan->asset->kode_asset }}</td>
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $pemeliharaan->jenis_perbaikan }}</td>
                                     <td class="border-b border-gray-300 p-4 pl-8 text-gray-600">{{ $pemeliharaan->kegiatan }}</td>

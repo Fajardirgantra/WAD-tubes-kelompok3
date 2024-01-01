@@ -26,6 +26,7 @@ class PemeliharaanController extends Controller
         $request->file('foto')->move(public_path('/pemeliharaan/bukti'), $foto);
         Pemeliharaan::create([
             'asset_id' => $request->asset_id,
+            'ruangan_id' => $request->ruangan_id,
             'jenis_perbaikan' => $request->jenis_perbaikan,
             'kegiatan' => $request->kegiatan,
             'foto' => "/pemeliharaan/bukti/$foto",
@@ -44,7 +45,8 @@ class PemeliharaanController extends Controller
     {
         $pemeliharaan = Pemeliharaan::find($pemeliharaan_id);
         $assets = Asset::all();
-        return view('admin.pemeliharaan_edit', compact('pemeliharaan', 'assets'));
+        $ruangans = Ruangan::all();
+        return view('admin.pemeliharaan_edit', compact('pemeliharaan', 'assets', 'ruangans'));
     }
     public function update(Request $request, $pemeliharaan_id)
     {
@@ -53,6 +55,7 @@ class PemeliharaanController extends Controller
         $request->file('foto')->move(public_path('/pemeliharaan/bukti'), $foto);
         $pemeliharaan->update([
             'asset_id' => $request->asset_id,
+            'ruangan_id' => $request->ruangan_id,
             'jenis_perbaikan' => $request->jenis_perbaikan,
             'kegiatan' => $request->kegiatan,
             'foto' => "/pemeliharaan/bukti/$foto",

@@ -25,9 +25,6 @@
                             <div class="mt-4">
                                 <x-input-label for="asset_id" :value="__('Kode Asset')" />
                                 <select id="asset_id" class="block mt-1 w-full" type="text" name="asset_id" :value="old('asset_id')" required autofocus>
-                                    {{-- @foreach($assets as $asset)
-                                        <option value="{{ $asset->id }}" class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm'">{{ $asset->kode_asset }}</option>
-                                    @endforeach --}}
                                 </select>
                                 <x-input-error :messages="$errors->get('asset_id')" class="mt-2" />
                             </div>
@@ -88,7 +85,7 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     JSON.parse(xhr.responseText).forEach(function(option) {
-                        var optionHTML = '<option value="'+option.kode_asset+'" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">'+option.kode_asset+'</option>';
+                        var optionHTML = '<option value="'+option.id+'" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">'+option.kode_asset+'</option>';
                         selectElement.insertAdjacentHTML('beforeend', optionHTML);
                     });
                 }

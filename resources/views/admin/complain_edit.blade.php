@@ -13,26 +13,28 @@
                         @csrf
 
                         <div>
-                        <x-input-label for="asset_id" :value="__('Kode Asset')" />
-                            <select id="asset_id" class="block mt-1 w-full" type="text" name="asset_id" :value="old('asset_id')" required autofocus>
-                                @foreach($assets as $asset)
-                                    <option value="{{ $asset->id }}" class="'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm'">{{ $asset->kode_asset }}</option>
-                                @endforeach
-                            </select>
-                            <x-input-error :messages="$errors->get('kode_asset')" class="mt-2" />
+                            <x-input-label for="ruangan_id" :value="__('Kode Ruangan')" />
+                            <x-text-input id="ruangan_id" class="block mt-1 w-full" type="text" name="ruangan_id" :value="$complain->ruangan->kode_ruangan" readonly />
+                            <input type="hidden" name="ruangan_id" value="{{ $complain->ruangan->id }}" />
+                            <x-input-error :messages="$errors->get('ruangan_id')" class="mt-2" />
                         </div>
 
                         <div class="mt-4">
+                            <x-input-label for="asset_id" :value="__('Kode Asset')" />
+                            <x-text-input id="asset_id" class="block mt-1 w-full" type="text" name="asset_id" :value="$complain->asset->kode_asset" readonly />
+                            <input type="hidden" name="asset_id" value="{{ $complain->asset->id }}" />
+                            <x-input-error :messages="$errors->get('asset_id')" class="mt-2" />
+                        </div>
+                        <div class="mt-4">
                             <x-input-label for="keterangan" :value="__('Keterangan')" />
-                            <x-text-input id="keterangan" class="block mt-1 w-full" type="text" name="keterangan" :value="old('keterangan', $complain->keterangan)" required/>
-                            <x-input-error :messages="$errors->get('keterangan')" class="mt-2" />
+                            <x-text-input id="keterangan" class="block mt-1 w-full" type="text" name="keterangan" :value="$complain->keterangan" readonly />
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="foto" :value="__('Foto Bukti')" />
                             <img src="{{ $complain->foto }}" height="250px" width="250px"/>
-                            <x-text-input id="foto" class="block mt-1 w-full" type="file" name="foto" :value="old('foto')"/>
-                            <x-input-error :messages="$errors->get('foto')" class="mt-2" />
+                            <!-- Display a message indicating that the field is not editable -->
+                            <span class="text-gray-500">This field is not editable</span>
                         </div>
 
                         <div class="mt-4">
